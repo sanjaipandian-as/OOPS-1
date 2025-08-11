@@ -1,27 +1,21 @@
-package com.school; // ✅ must be first line
+package com.school;
 
 public class Main {
     public static void main(String[] args) {
-        // Create arrays for Students and Courses
-        Student[] students = new Student[3];
-        Course[] courses = new Course[2];
+        // Create Students using constructor
+        Student[] students = {
+            new Student("Alice"),
+            new Student("Bob"),
+            new Student("Charlie"),
+            new Student("David") // extra student to check auto ID
+        };
 
-        // Initialize Students
-        students[0] = new Student();
-        students[0].setDetails(1, "Alice");
-
-        students[1] = new Student();
-        students[1].setDetails(2, "Bob");
-
-        students[2] = new Student();
-        students[2].setDetails(3, "Charlie");
-
-        // Initialize Courses
-        courses[0] = new Course();
-        courses[0].setDetails("C101", "Mathematics");
-
-        courses[1] = new Course();
-        courses[1].setDetails("C102", "Physics");
+        // Create Courses using constructor
+        Course[] courses = {
+            new Course("Mathematics"),
+            new Course("Physics"),
+            new Course("Chemistry") // extra course to check auto ID
+        };
 
         // Display Students
         System.out.println("=== Student Details ===");
