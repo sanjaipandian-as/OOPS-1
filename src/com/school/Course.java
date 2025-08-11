@@ -1,19 +1,19 @@
 package com.school;
 
 public class Course {
-    String courseId;
-    String courseName;
+    private static int nextCourseIdCounter = 101;
+    private int courseId;
+    private String courseName;
 
-    // Method to set details
-    public void setDetails(String courseId, String courseName) {
-        this.courseId = courseId;
+    // Constructor
+    public Course(String courseName) {
+        this.courseId = nextCourseIdCounter++;
         this.courseName = courseName;
     }
 
-    // Method to display details
     public void displayDetails() {
-        System.out.println("Course ID: " + courseId);
+        System.out.println("Course ID: C" + courseId);
         System.out.println("Course Name: " + courseName);
-        System.out.println("------------------");
+        System.out.println("-------------------");
     }
 }
