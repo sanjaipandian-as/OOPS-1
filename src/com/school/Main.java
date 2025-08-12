@@ -1,32 +1,34 @@
 package com.school;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        // Create Students using constructor
-        Student[] students = {
-            new Student("Alice"),
-            new Student("Bob"),
-            new Student("Charlie"),
-            new Student("David") // extra student to check auto ID
-        };
+        // Create students
+        Student s1 = new Student("Alice");
+        Student s2 = new Student("Bob");
 
-        // Create Courses using constructor
-        Course[] courses = {
-            new Course("Mathematics"),
-            new Course("Physics"),
-            new Course("Chemistry") // extra course to check auto ID
-        };
+        // Create courses
+        Course c1 = new Course("Mathematics");
+        Course c2 = new Course("Science");
 
-        // Display Students
-        System.out.println("=== Student Details ===");
-        for (Student student : students) {
-            student.displayDetails();
-        }
+        // Display student and course info
+        s1.displayInfo();
+        s2.displayInfo();
+        c1.displayCourse();
+        c2.displayCourse();
 
-        // Display Courses
-        System.out.println("=== Course Details ===");
-        for (Course course : courses) {
-            course.displayDetails();
+        // Create attendance log
+        List<AttendanceRecord> attendanceLog = new ArrayList<>();
+
+        attendanceLog.add(new AttendanceRecord(s1.getStudentId(), c1.getCourseId(), "Present"));
+        attendanceLog.add(new AttendanceRecord(s2.getStudentId(), c2.getCourseId(), "Absent"));
+        attendanceLog.add(new AttendanceRecord(s1.getStudentId(), c2.getCourseId(), "Late")); // Invalid
+
+        // Display attendance records
+        for (AttendanceRecord record : attendanceLog) {
+            record.displayRecord();
         }
     }
 }

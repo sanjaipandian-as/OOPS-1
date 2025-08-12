@@ -35,3 +35,23 @@ javac -d out src/com/school/*.java
 
 # Run the Main class
 java -cp out com.school.Main
+
+
+# School Management Project
+
+## Part-04: Data Encapsulation & Attendance Recording Validation
+
+### Changes:
+- Applied **Encapsulation** to `Student` and `Course` classes by making fields private and adding public getters.
+- Created a new `AttendanceRecord` class with:
+  - Private fields: `studentId`, `courseId`, `status`
+  - Constructor with **status validation**: Only "Present" or "Absent" allowed (case-insensitive). Otherwise set to `"Invalid"` and print a warning.
+  - Public getters and a `displayRecord()` method.
+- Updated `Main.java` to:
+  - Use `ArrayList<AttendanceRecord>` for attendance logs.
+  - Record attendance for students and courses, including one with invalid status to test validation.
+
+### How to Run:
+```bash
+javac src/com/school/*.java
+java -cp src com.school.Main
