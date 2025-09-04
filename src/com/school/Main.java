@@ -6,16 +6,16 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         // Create students
-        Student s1 = new Student("Alice");
-        Student s2 = new Student("Bob");
+        Student s1 = new Student("Alice", 20, "Female");
+        Student s2 = new Student("Bob", 22, "Male");
 
         // Create courses
         Course c1 = new Course("Mathematics");
         Course c2 = new Course("Science");
 
         // Display student and course info
-        s1.displayInfo();
-        s2.displayInfo();
+        System.out.println(s1.displayInfo());
+        System.out.println(s2.displayInfo());
         c1.displayCourse();
         c2.displayCourse();
 
@@ -30,5 +30,14 @@ public class Main {
         for (AttendanceRecord record : attendanceLog) {
             record.displayRecord();
         }
+
+        // ===== Part-05 Hierarchy Demo =====
+        Teacher t1 = new Teacher("Lakshmi", 40, "Female", "Mathematics", 60000);
+        Staff st1 = new Staff("Ravi", 35, "Male", "Clerk", "Administration");
+
+        System.out.println("\n=== Hierarchy Demo ===");
+        System.out.println(s1.displayInfo());
+        System.out.println(t1.displayInfo());
+        System.out.println(st1.displayInfo());
     }
 }
