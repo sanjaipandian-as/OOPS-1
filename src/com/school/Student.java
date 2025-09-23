@@ -17,4 +17,9 @@ public class Student extends Person {
     public String displayInfo() {
         return super.displayInfo() + ", Student ID: " + studentId;
     }
+
+    @Override
+    public void displayDetails() {
+        System.out.println(displayInfo());
+    }
 }

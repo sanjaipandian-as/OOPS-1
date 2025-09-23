@@ -1,13 +1,13 @@
 package com.school;
 
 public class AttendanceRecord {
-    private int studentId;
-    private int courseId;
+    private Student student;
+    private Course course;
     private String status;
 
-    public AttendanceRecord(int studentId, int courseId, String status) {
-        this.studentId = studentId;
-        this.courseId = courseId;
+    public AttendanceRecord(Student student, Course course, String status) {
+        this.student = student;
+        this.course = course;
 
         if (status.equalsIgnoreCase("Present") || status.equalsIgnoreCase("Absent")) {
             this.status = status;
@@ -17,12 +17,12 @@ public class AttendanceRecord {
         }
     }
 
-    public int getStudentId() {
-        return studentId;
+    public Student getStudent() {
+        return student;
     }
 
-    public int getCourseId() {
-        return courseId;
+    public Course getCourse() {
+        return course;
     }
 
     public String getStatus() {
@@ -30,6 +30,18 @@ public class AttendanceRecord {
     }
 
     public void displayRecord() {
-        System.out.println("Student ID: " + studentId + ", Course ID: " + courseId + ", Status: " + status);
+        System.out.println(
+            "Attendance Record -> " +
+            "Student: " + student.getName() +
+            " (ID: " + student.getStudentId() + ")" +
+            " | Course: " + course.getCourseName() +
+            " (ID: " + course.getCourseId() + ")" +
+            " | Status: " + status
+        );
+    }
+
+    public String toDataString() {
+        
+        return student.getStudentId() + "," + course.getCourseId() + "," + status;
     }
 }

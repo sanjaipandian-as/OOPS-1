@@ -1,43 +1,57 @@
 package com.school;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Main {
+
+    public static void displaySchoolDirectory(List<Person> people) {
+        System.out.println("\n=== School Directory (Polymorphism Demo) ===");
+        for (Person person : people) {
+            person.displayDetails(); 
+        }
+    }
+
     public static void main(String[] args) {
-        // Create students
+
         Student s1 = new Student("Alice", 20, "Female");
         Student s2 = new Student("Bob", 22, "Male");
 
-        // Create courses
         Course c1 = new Course("Mathematics");
         Course c2 = new Course("Science");
 
-        // Display student and course info
-        System.out.println(s1.displayInfo());
-        System.out.println(s2.displayInfo());
-        c1.displayCourse();
-        c2.displayCourse();
+        Teacher t1 = new Teacher("Lakshmi", 40, "Female", "Mathematics", 60000);
+        Staff st1 = new Staff("Ravi", 35, "Male", "Clerk", "Administration");
 
-        // Create attendance log
+        List<Person> schoolPeople = new ArrayList<>();
+        schoolPeople.add(s1);
+        schoolPeople.add(s2);
+        schoolPeople.add(t1);
+        schoolPeople.add(st1);
+
+        
+        displaySchoolDirectory(schoolPeople);
+
+    
         List<AttendanceRecord> attendanceLog = new ArrayList<>();
+        attendanceLog.add(new AttendanceRecord(s1, c1, "Present"));
+        attendanceLog.add(new AttendanceRecord(s2, c2, "Absent"));
+        attendanceLog.add(new AttendanceRecord(s1, c2, "Late")); 
 
-        attendanceLog.add(new AttendanceRecord(s1.getStudentId(), c1.getCourseId(), "Present"));
-        attendanceLog.add(new AttendanceRecord(s2.getStudentId(), c2.getCourseId(), "Absent"));
-        attendanceLog.add(new AttendanceRecord(s1.getStudentId(), c2.getCourseId(), "Late")); // Invalid
-
-        // Display attendance records
+        
+        System.out.println("\n=== Attendance Log ===");
         for (AttendanceRecord record : attendanceLog) {
             record.displayRecord();
         }
 
-        // ===== Part-05 Hierarchy Demo =====
-        Teacher t1 = new Teacher("Lakshmi", 40, "Female", "Mathematics", 60000);
-        Staff st1 = new Staff("Ravi", 35, "Male", "Clerk", "Administration");
+        
+        List<Student> studentsToSave = new ArrayList<>();
+        for (Person p : schoolPeople) {
+            if (p instanceof Student) {
+                studentsToSave.add((Student) p);
+            }
+        }
 
-        System.out.println("\n=== Hierarchy Demo ===");
-        System.out.println(s1.displayInfo());
-        System.out.println(t1.displayInfo());
-        System.out.println(st1.displayInfo());
+        // In real project: FileStorageService.saveData(studentsToSave, "students.txt");
+        System.out.println("\nStudents prepared for saving: " + studentsToSave.size());
     }
 }

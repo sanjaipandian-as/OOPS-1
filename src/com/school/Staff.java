@@ -14,4 +14,9 @@ public class Staff extends Person {
     public String displayInfo() {
         return super.displayInfo() + ", Role: " + role + ", Department: " + department;
     }
+
+    @Override
+    public void displayDetails() {
+        System.out.println(displayInfo());
+    }
 }

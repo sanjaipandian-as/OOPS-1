@@ -10,7 +10,6 @@ public class Course {
         this.courseName = courseName;
     }
 
-    // Getters (Encapsulation)
     public int getCourseId() {
         return courseId;
     }

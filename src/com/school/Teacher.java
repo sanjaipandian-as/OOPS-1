@@ -14,4 +14,9 @@ public class Teacher extends Person {
     public String displayInfo() {
         return super.displayInfo() + ", Subject: " + subject + ", Salary: " + salary;
     }
+
+    @Override
+    public void displayDetails() {
+        System.out.println(displayInfo());
+    }
 }
