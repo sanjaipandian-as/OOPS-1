@@ -1,17 +1,22 @@
 package com.school;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RegistrationService {
-    public Course createCourse(String name, int capacity) {
-        return new Course(name, capacity);
+    private List<Course> courses = new ArrayList<>();
+
+    public Course createCourse(String name, int capacity, int sectionSize) {
+        Course course = new Course(name, capacity, sectionSize);
+        courses.add(course);
+        return course;
     }
 
     public boolean enrollStudentInCourse(Student student, Course course) {
-        boolean success = course.addStudent(student);
-        if (success) {
-            System.out.println(student.getName() + " enrolled in " + course.getCourseName());
-        } else {
-            System.out.println("Enrollment failed: " + course.getCourseName() + " is full!");
-        }
-        return success;
+        return course.addStudent(student);
+    }
+
+    public List<Course> getCourses() {
+        return courses;
     }
 }
