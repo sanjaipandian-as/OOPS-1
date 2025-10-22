@@ -4,40 +4,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+    public static void displaySchoolDirectory(List<Person> people) {
+        System.out.println("\n=== School Directory ===");
+        for (Person person : people) {
+            person.displayDetails();
+        }
+    }
+
     public static void main(String[] args) {
-        // Create students
+        RegistrationService registrationService = new RegistrationService();
+        AttendanceService attendanceService = new AttendanceService();
+
         Student s1 = new Student("Alice", 20, "Female");
         Student s2 = new Student("Bob", 22, "Male");
 
-        // Create courses
-        Course c1 = new Course("Mathematics");
-        Course c2 = new Course("Science");
+        Teacher t1 = new Teacher("Lakshmi", 40, "Female", "Mathematics", 60000);
+        Staff st1 = new Staff("Ravi", 35, "Male", "Clerk", "Administration");
 
-        // Display student and course info
-        System.out.println(s1.displayInfo());
-        System.out.println(s2.displayInfo());
-        c1.displayCourse();
-        c2.displayCourse();
+        List<Person> schoolPeople = new ArrayList<>();
+        schoolPeople.add(s1);
+        schoolPeople.add(s2);
+        schoolPeople.add(t1);
+        schoolPeople.add(st1);
 
-        // Create attendance log
+        displaySchoolDirectory(schoolPeople);
+
+        Course c1 = registrationService.createCourse("Mathematics", 2);
+        Course c2 = registrationService.createCourse("Science", 1);
+
+        registrationService.enrollStudentInCourse(s1, c1);
+        registrationService.enrollStudentInCourse(s2, c1);
+        registrationService.enrollStudentInCourse(s2, c2);
+        registrationService.enrollStudentInCourse(s1, c2);
+
         List<AttendanceRecord> attendanceLog = new ArrayList<>();
+        attendanceService.markAttendance(s1, c1, "Present");
+        attendanceService.markAttendance(s2, c1, "Absent");
+        attendanceService.markAttendance(s1, c2, "Late");
+        attendanceService.markAttendance(s2, c2, "Present");
 
-        attendanceLog.add(new AttendanceRecord(s1.getStudentId(), c1.getCourseId(), "Present"));
-        attendanceLog.add(new AttendanceRecord(s2.getStudentId(), c2.getCourseId(), "Absent"));
-        attendanceLog.add(new AttendanceRecord(s1.getStudentId(), c2.getCourseId(), "Late")); // Invalid
-
-        // Display attendance records
+        System.out.println("\n=== Attendance Log ===");
         for (AttendanceRecord record : attendanceLog) {
             record.displayRecord();
         }
 
-        // ===== Part-05 Hierarchy Demo =====
-        Teacher t1 = new Teacher("Lakshmi", 40, "Female", "Mathematics", 60000);
-        Staff st1 = new Staff("Ravi", 35, "Male", "Clerk", "Administration");
-
-        System.out.println("\n=== Hierarchy Demo ===");
-        System.out.println(s1.displayInfo());
-        System.out.println(t1.displayInfo());
-        System.out.println(st1.displayInfo());
+        c1.displayCourse();
+        c2.displayCourse();
     }
 }

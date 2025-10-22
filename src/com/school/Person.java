@@ -11,7 +11,16 @@ public class Person {
         this.gender = gender;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    // Polymorphic method
     public String displayInfo() {
         return "Name: " + name + ", Age: " + age + ", Gender: " + gender;
+    }
+
+    public void displayDetails() {
+        System.out.println(displayInfo());
     }
 }
