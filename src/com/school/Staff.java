@@ -13,6 +13,7 @@ public class Staff extends Person {
     @Override
     public String displayInfo() {
         return super.displayInfo() + ", Role: " + role + ", Department: " + department;
+        // Validoutput
     }
 
     @Override
